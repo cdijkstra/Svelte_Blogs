@@ -38,6 +38,14 @@
         image: "pipelines.png",
         summary: "summary",
         slug: "2021-05-22-Azure-Cli-Querying-Tips.md"
+    },
+    {
+        title:  "Looping over complex objects in Azure Pipelines",
+        date: '2022-07-03 15:45:00 +0100',
+        tags: "DevOps Pipelines",
+        image: "pipelines.png",
+        summary: "summary",
+        slug: "2021-05-22-Azure-Cli-Querying-Tips.md"
     }];
   
     function readMore(slug: string) {

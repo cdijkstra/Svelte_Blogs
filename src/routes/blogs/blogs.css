@@ -33,8 +33,24 @@ article {
     background: aqua
 }
 
+article:last-child {
+    margin-right: auto; /* Pushes the last article to the left */
+  }
+
 @media (max-width: 1024px) {
     article {
       flex: 1 1 calc(100% - 20px); /* Full width on smaller screens */
+    }
+  }
+
+  @media (max-width: 768px) {
+    article {
+      flex: 1 1 calc(50% - 20px); /* Two posts per row with a 20px gap on smaller screens */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    article {
+      flex: 1 1 calc(100% - 20px); /* Single column layout on even smaller screens */
     }
   }
