@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 	import './blogs.css';
 
-    import { onMount } from 'svelte';
-    import marked from 'marked';
-    import matter from 'gray-matter';
+    // import { onMount } from 'svelte';
+    // import marked from 'marked';
+    // import matter from 'gray-matter';
     import { navigate } from 'svelte-routing';
 
   
@@ -16,9 +16,9 @@
         slug: "2021-05-22-Azure-Cli-Querying-Tips.md"
     }];
   
-    // function readMore(slug: string) {
-    //     navigate(`/src/blogs/${slug}`);
-    // }
+    function readMore(slug: string) {
+        navigate(`/src/blogs/${slug}`);
+    }
 
     // onMount(async () => {
     //   const postFiles = import.meta.glob('/src/posts/*.md');
@@ -36,7 +36,7 @@
           <h2>{post.title}</h2>
           <img src="/src/lib/images/{post.image}" alt={post.title} />
           <p>{post.summary}</p>
-          <!-- <button on:click={() => readMore(post.slug)}>Read more</button> -->
+          <button on:click={() => readMore(post.slug)}>Read more</button>
         </article>
       {/each}
     {:else}

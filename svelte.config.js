@@ -8,7 +8,15 @@ const config = {
 		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter()
-	}
+	},
+	preprocess: sveltePreprocess({
+		// Specify the preprocessors you want to use here
+		typescript: {
+			// Options for TypeScript preprocessing
+			tsconfigFile: './tsconfig.json',
+			transpileOnly: true
+		}
+	})
 };
 
 export default config;
