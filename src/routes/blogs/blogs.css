@@ -1,9 +1,6 @@
 @import '@fontsource-variable/fraunces';
 
 article img {
-    /* width: 500px;
-    height: 300px;
-    display: block; */
     width: 100%;
     height: 100px;
     height: auto;
@@ -24,7 +21,7 @@ article img:hover {
 
 
 article {
-    flex: 1 1 calc(33.33% - 20px); /* Three posts per row with a 20px gap */
+    flex: 1 1 calc(50% - 20px); /* Three posts per row with a 20px gap */
     box-sizing: border-box;
     margin: 10px 0; /* Adjust the margin as needed */
     padding: 15px;
@@ -46,11 +43,5 @@ article:last-child {
   @media (max-width: 768px) {
     article {
       flex: 1 1 calc(50% - 20px); /* Two posts per row with a 20px gap on smaller screens */
-    }
-  }
-  
-  @media (max-width: 576px) {
-    article {
-      flex: 1 1 calc(100% - 20px); /* Single column layout on even smaller screens */
     }
   }
