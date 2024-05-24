@@ -1,1 +1,10 @@
 @import '@fontsource-variable/fraunces';
+
+article img {
+    width: 500px;
+    height: 300px;
+}
+
+article img:hover { 
+    transform: scale(1.05) rotate(3deg) translate(20px, 0px);
+  }
