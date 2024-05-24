@@ -1,10 +1,40 @@
 @import '@fontsource-variable/fraunces';
 
 article img {
-    width: 500px;
+    /* width: 500px;
     height: 300px;
+    display: block; */
+    width: 100%;
+    height: 100px;
+    height: auto;
+    display: block;
 }
 
 article img:hover { 
     transform: scale(1.05) rotate(3deg) translate(20px, 0px);
+  }
+
+.post-flexbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust the gap between the posts as needed */
+    justify-content: space-between;
+}
+
+
+article {
+    flex: 1 1 calc(33.33% - 20px); /* Three posts per row with a 20px gap */
+    box-sizing: border-box;
+    margin: 10px 0; /* Adjust the margin as needed */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    background: aqua
+}
+
+@media (max-width: 1024px) {
+    article {
+      flex: 1 1 calc(100% - 20px); /* Full width on smaller screens */
+    }
   }

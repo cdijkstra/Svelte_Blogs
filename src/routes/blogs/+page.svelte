@@ -22,6 +22,22 @@
         image: "pipelines.png",
         summary: "summary",
         slug: "2021-05-22-Azure-Cli-Querying-Tips.md"
+    },
+    {
+        title:  "Mastering JMESPath queries in the Azure CLI",
+        date: "2021-05-22 15:45:00 +0100",
+        tags: "DevOps Azure jq jmespath",
+        image: "jmespath.png",
+        summary: "summary",
+        slug: "2021-05-22-Azure-Cli-Querying-Tips.md"
+    },
+    {
+        title:  "Looping over complex objects in Azure Pipelines",
+        date: '2022-07-03 15:45:00 +0100',
+        tags: "DevOps Pipelines",
+        image: "pipelines.png",
+        summary: "summary",
+        slug: "2021-05-22-Azure-Cli-Querying-Tips.md"
     }];
   
     function readMore(slug: string) {
@@ -53,14 +69,16 @@
     <!-- <div class="markdown-content">{@html markdownContent}</div> -->
 
     {#if posts.length > 0}
-      {#each posts as post}
-        <article>
-            <h2>{post.title}</h2>
-            <img src="/src/lib/images/{post.image}" alt={post.title} />
-            <p>{post.summary}</p>
-            <button on:click={() => readMore(post.slug)}>Read more</button>
-        </article>
-      {/each}
+        <div class="post-flexbox">
+            {#each posts as post}
+                <article>
+                    <h2>{post.title}</h2>
+                    <img src="/src/lib/images/{post.image}" alt={post.title} />
+                    <p>{post.summary}</p>
+                    <button on:click={() => readMore(post.slug)}>Read more</button>
+                </article>
+            {/each}
+        </div>
     {:else}
       <p>Loading...</p>
     {/if}
