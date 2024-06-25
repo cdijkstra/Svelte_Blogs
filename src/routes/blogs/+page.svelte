@@ -43,7 +43,7 @@
   </script>
   
   <main>
-    <h1>Here you can find my blogs</h1>
+    <h1>Congratulations 🎉 You've found my blogs</h1>
     <p>Blog count: {posts.length}</p>
   
     <!-- <div class="markdown-content">{@html markdownContent}</div> -->
@@ -52,7 +52,7 @@
         <div class="post-flexbox">
             {#each posts as post}
                 <article>
-                    <h2>{post.title}</h2>
+                    <h2 class="fancy-title">{post.title}</h2>
                     <img src="/src/lib/images/{post.image}" alt={post.title} />
                     <p>{post.summary}</p>
                     <button on:click={() => readMore(post.slug)}>Read more</button>

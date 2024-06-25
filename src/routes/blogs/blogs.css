@@ -24,6 +24,13 @@ article {
     background: aqua
 }
 
+.fancy-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem; /* Adjust size as needed */
+  font-weight: 700; /* Adjust weight as needed */
+  color: green; /* Adjust color as needed */
+}
+
 /* Alternating placement of posts */
 .post-flexbox article:nth-child(4n+1) {
   grid-column: 1 / 2; /* Place in column A */

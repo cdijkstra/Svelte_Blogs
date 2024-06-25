@@ -31,7 +31,9 @@
 				<img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Blazor.png" alt="Blazor" height="40">
 				<img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" alt="Python" height="40">
 				<img src="https://banner2.cleanpng.com/20180408/pew/kisspng-the-c-programming-language-computer-icons-comput-programming-5acadc2dec0be9.0824244915232440779669.jpg" alt="C++" height="40">
-				<img src="https://media.licdn.com/dms/image/D5612AQH4oLPhUfgZiA/article-cover_image-shrink_720_1280/0/1667313566845?e=2147483647&v=beta&t=-INWC09Mn-fQz8cYHPlAD7l2gtMQUUg-QHpcGkFcLw0" alt="Python" height="40">
+				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEc9A_S6BPxCDRp5WjMFEfXrpCu1ya2OO-Lw&s" alt="Python" height="40">
+				<img src="https://media.licdn.com/dms/image/D5612AQH4oLPhUfgZiA/article-cover_image-shrink_720_1280/0/1667313566845?e=2147483647&v=beta&t=-INWC09Mn-fQz8cYHPlAD7l2gtMQUUg-QHpcGkFcLw0" alt="HTML 5" height="40">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS 3" height="40">
 			</div>
 			<div class="flex-row">
 				<img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/azure/azure.png" alt="Azure" height="40">

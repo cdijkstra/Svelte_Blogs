@@ -110,14 +110,18 @@ button:focus:not(:focus-visible) {
     display: flex;
     flex-wrap: wrap;
     gap: 10px; /* Adjust the gap between rows and columns */
+	justify-content: flex-start;
 }
 
 .flex-row {
-	display: flex;
-    flex-wrap: wrap; /* Ensures all items don't stay in a single row */
+    display: flex;
+    flex-wrap: wrap; /* Ensures all items stay in a single row */
     gap: 10px; /* Adjust the gap between items */
 }
 
 .flex-row img {
     margin: 4px; /* Adjust the margin around each image */
+    flex: 1 1 auto; /* Allow images to grow and shrink */
+    max-height: 40px; /* Limit the maximum height of each image */
+    object-fit: contain; /* Ensure images fit within their containers */
 }
