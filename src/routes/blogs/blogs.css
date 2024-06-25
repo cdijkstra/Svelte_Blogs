@@ -2,7 +2,6 @@
 
 article img {
     width: 100%;
-    height: 100px;
     height: auto;
     display: block;
 }
@@ -12,36 +11,35 @@ article img:hover {
   }
 
 .post-flexbox {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
     gap: 20px; /* Adjust the gap between the posts as needed */
-    justify-content: space-between;
 }
 
-
 article {
-    flex: 1 1 calc(50% - 20px); /* Three posts per row with a 20px gap */
     box-sizing: border-box;
-    margin: 10px 0; /* Adjust the margin as needed */
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 2px;
     background: aqua
 }
 
-article:last-child {
-    margin-right: auto; /* Pushes the last article to the left */
-  }
 
 @media (max-width: 1024px) {
-    article {
-      flex: 1 1 calc(100% - 20px); /* Full width on smaller screens */
-    }
+  .post-flexbox {
+      grid-template-columns: 1fr; /* Single column on smaller screens */
   }
+}
 
 @media (max-width: 768px) {
-  article {
-    flex: 1 1 calc(50% - 20px); /* Two posts per row with a 20px gap on smaller screens */
+  .post-flexbox {
+      grid-template-columns: repeat(2, 1fr); /* Two columns on smaller screens */
   }
+}
+
+/* Center the last post if there's an odd number of posts */
+.post-flexbox article:nth-child(odd):last-child {
+  grid-column: 1 / 3; /* Center across both columns */
+  justify-self: center; /* Center the content horizontally */
+  width: calc(50% - 20px); /* Maintain the same width as other articles */
 }
