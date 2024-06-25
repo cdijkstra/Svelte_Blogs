@@ -1,0 +1,66 @@
+<script lang="ts">
+	import './blogs.css';
+
+    import { onMount } from 'svelte';
+    import { marked } from 'marked';
+    import { navigate } from 'svelte-routing';
+    import type { Post } from '$lib/types/types';
+
+    $: markdownContent = '';
+  
+    let posts: Post[] = [];
+    // let posts = [{
+    //     title:  "Mastering JMESPath queries in the Azure CLI",
+    //     date: "2021-05-22 15:45:00 +0100",
+    //     tags: "DevOps Azure jq jmespath",
+    //     image: "jmespath.png",
+    //     summary: "summary",
+    //     slug: "2021-05-22-Azure-Cli-Querying-Tips.md"
+    // }];
+  
+    onMount(async () => {
+        console.log('Calling API');
+        fetchPosts();
+    });
+
+    async function fetchPosts() {
+        try {
+            const response = await fetch('api');
+            if (response.ok) {
+                posts = await response.json();
+            } else {
+                console.error('Failed to fetch posts:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+        }
+    }
+
+    function readMore(slug: string) {
+        navigate(`/src/blogs/${slug}`);
+    }
+
+  </script>
+  
+  <main>
+    <h1>Here you can find my blogs</h1>
+    <p>Blog count: {posts.length}</p>
+  
+    <!-- <div class="markdown-content">{@html markdownContent}</div> -->
+
+    {#if posts.length > 0}
+        <div class="post-flexbox">
+            {#each posts as post}
+                <article>
+                    <h2>{post.title}</h2>
+                    <img src="/src/lib/images/{post.image}" alt={post.title} />
+                    <p>{post.summary}</p>
+                    <button on:click={() => readMore(post.slug)}>Read more</button>
+                </article>
+            {/each}
+        </div>
+    {:else}
+      <p>Loading...</p>
+    {/if}
+  </main>
+  

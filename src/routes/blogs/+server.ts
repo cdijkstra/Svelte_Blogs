@@ -1,30 +1,44 @@
-import { json } from '@sveltejs/kit'
-import type { Post } from '$lib/types'
+import { readdirSync, readFileSync } from 'fs';
+import { join } from 'path';
+import { json } from '@sveltejs/kit';
+import matter from 'gray-matter';
+import type { Post } from '$lib/types/types'
+import type { RequestHandler } from 'express';
 
-async function getPosts() {
-	let posts: Post[] = []
+export const GET: RequestHandler = async () => {
+    try {
+		console.log('============');
+		console.log('Hi');
+		console.log('============');
+        const postsDirectory = join(process.cwd(), 'src/posts');
+        const filenames = readdirSync(postsDirectory);
 
-	const paths = import.meta.glob('/src/posts/*.md', { eager: true })
+        const posts: Post[] = filenames.map((filename) => {
+            const filePath = join(postsDirectory, filename);
+            const fileContents = readFileSync(filePath, 'utf8');
 
-	for (const path in paths) {
-		const file = paths[path]
-		const slug = path.split('/').at(-1)?.replace('.md', '')
+            const { data, content } = matter(fileContents);
+			console.log(content);
+            const post: Post = {
+                title: data.title,
+                date: data.date,
+                tags: data.tags,
+                image: data.image,
+                summary: content.split('\n')[0], // Assuming the first line of content is the summary
+                slug: filename.replace('.md', '')
+            };
 
-		if (file && typeof file === 'object' && 'metadata' in file && slug) {
-			const metadata = file.metadata as Omit<Post, 'slug'>
-			const post = { ...metadata, slug } satisfies Post
-			post.published && posts.push(post)
-		}
-	}
+            return post;
+        });
+        return json(posts);
 
-	posts = posts.sort((first, second) =>
-        new Date(second.date).getTime() - new Date(first.date).getTime()
-	)
-
-	return posts
-}
-
-export async function GET() {
-	const posts = await getPosts()
-	return json(posts)
-}
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+        return {
+            status: 500,
+            body: {
+                error: 'Internal Server Error'
+            }
+        };
+    }
+};
