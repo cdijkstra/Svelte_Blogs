@@ -40,8 +40,8 @@ article:last-child {
     }
   }
 
-  @media (max-width: 768px) {
-    article {
-      flex: 1 1 calc(50% - 20px); /* Two posts per row with a 20px gap on smaller screens */
-    }
+@media (max-width: 768px) {
+  article {
+    flex: 1 1 calc(50% - 20px); /* Two posts per row with a 20px gap on smaller screens */
   }
+}

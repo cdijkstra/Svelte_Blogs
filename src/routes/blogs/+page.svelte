@@ -48,25 +48,25 @@
         slug: "2021-05-22-Azure-Cli-Querying-Tips.md"
     }];
   
-    function readMore(slug: string) {
-        navigate(`/src/blogs/${slug}`);
-    }
+    // function readMore(slug: string) {
+    //     navigate(`/src/blogs/${slug}`);
+    // }
 
-    onMount(async () => {
-        try {
-            const response = await fetch(`/src/routes/blogs/posts/2021-05-22-Azure-Cli-Querying-Tips.md`); // Adjust the path to your Markdown files
-            if (response.ok) {
-                const markdownText = await response.text();
-                const [metadata, content] = markdownText.split('---').slice(1);
-                markdownContent = await marked.parse(content);
-                console.log('hi');
-            } else {
-                console.error('Failed to fetch blog post:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Error fetching blog post:', error);
-        }
-    });
+    // onMount(async () => {
+    //     try {
+    //         const response = await fetch(`/src/routes/blogs/posts/2021-05-22-Azure-Cli-Querying-Tips.md`); // Adjust the path to your Markdown files
+    //         if (response.ok) {
+    //             const markdownText = await response.text();
+    //             const [metadata, content] = markdownText.split('---').slice(1);
+    //             markdownContent = await marked.parse(content);
+    //             console.log('hi');
+    //         } else {
+    //             console.error('Failed to fetch blog post:', response.statusText);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching blog post:', error);
+    //     }
+    // });
 
   </script>
   
@@ -83,7 +83,7 @@
                     <h2>{post.title}</h2>
                     <img src="/src/lib/images/{post.image}" alt={post.title} />
                     <p>{post.summary}</p>
-                    <button on:click={() => readMore(post.slug)}>Read more</button>
+                    <!-- <button on:click={() => readMore(post.slug)}>Read more</button> -->
                 </article>
             {/each}
         </div>
