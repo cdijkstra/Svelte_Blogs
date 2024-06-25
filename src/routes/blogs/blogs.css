@@ -12,7 +12,7 @@ article img:hover {
 
 .post-flexbox {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-template-columns: repeat(3, 1fr); /* Two columns */
     gap: 20px; /* Adjust the gap between the posts as needed */
 }
 
@@ -24,22 +24,37 @@ article {
     background: aqua
 }
 
-
+/* Handle different screen sizes */
 @media (max-width: 1024px) {
   .post-flexbox {
-      grid-template-columns: 1fr; /* Single column on smaller screens */
+      grid-template-columns: repeat(2, 1fr); /* Two columns on smaller screens */
+  }
+
+  .post-flexbox article:nth-child(2n+1):last-child {
+      grid-column: 1 / 3;
+      justify-self: center;
+      width: calc(50% - 20px);
   }
 }
 
 @media (max-width: 768px) {
   .post-flexbox {
-      grid-template-columns: repeat(2, 1fr); /* Two columns on smaller screens */
+      grid-template-columns: 1fr; /* Single column on very small screens */
   }
 }
 
-/* Center the last post if there's an odd number of posts */
-.post-flexbox article:nth-child(odd):last-child {
-  grid-column: 1 / 3; /* Center across both columns */
-  justify-self: center; /* Center the content horizontally */
-  width: calc(50% - 20px); /* Maintain the same width as other articles */
+/* Center the last row if there are two posts */
+.post-flexbox article:nth-last-child(2):nth-child(odd) {
+  grid-column: 2 / 3; /* Center the two posts */
+}
+
+.post-flexbox article:nth-last-child(2):nth-child(even) {
+  grid-column: 1 / 2; /* Center the two posts */
+}
+
+/* Center the last post if there's one post */
+.post-flexbox article:nth-last-child(1):nth-child(odd) {
+  grid-column: 2 / 3; /* Center the last post */
+  justify-self: center;
+  width: calc(33.333% - 20px); /* Maintain the same width as other articles */
 }
