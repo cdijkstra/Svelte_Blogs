@@ -105,3 +105,19 @@ button:focus:not(:focus-visible) {
 	width: 1px;
 	white-space: nowrap;
 }
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust the gap between rows and columns */
+}
+
+.flex-row {
+	display: flex;
+    flex-wrap: wrap; /* Ensures all items don't stay in a single row */
+    gap: 10px; /* Adjust the gap between items */
+}
+
+.flex-row img {
+    margin: 4px; /* Adjust the margin around each image */
+}
