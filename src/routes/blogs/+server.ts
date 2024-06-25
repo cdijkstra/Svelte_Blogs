@@ -7,9 +7,6 @@ import type { RequestHandler } from 'express';
 
 export const GET: RequestHandler = async () => {
     try {
-		console.log('============');
-		console.log('Hi');
-		console.log('============');
         const postsDirectory = join(process.cwd(), 'src/posts');
         const filenames = readdirSync(postsDirectory);
 
@@ -24,7 +21,7 @@ export const GET: RequestHandler = async () => {
                 date: data.date,
                 tags: data.tags,
                 image: data.image,
-                summary: content.split('\n')[0], // Assuming the first line of content is the summary
+                summary: content.split('\n')[1], // Assuming the first line of content is the summary
                 slug: filename.replace('.md', '')
             };
 

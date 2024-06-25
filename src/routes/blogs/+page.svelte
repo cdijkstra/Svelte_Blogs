@@ -25,7 +25,7 @@
 
     async function fetchPosts() {
         try {
-            const response = await fetch('api');
+            const response = await fetch('blogs');
             if (response.ok) {
                 posts = await response.json();
             } else {
