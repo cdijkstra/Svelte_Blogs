@@ -6,14 +6,14 @@
 <section>
 	<div class="image-container">
 		<img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" alt="Welcome"/>
-		<img src="https://avatars.githubusercontent.com/u/62383372?v=4" alt="Casper" />
+		<img src="src/lib/images/casper2.png" alt="Casper" />
 	</div>
 	<h2>
 		I am Casper Dijkstra, a software developer and Azure architect working at Freshminds in the Netherlands.
 		<img src="https://komarev.com/ghpvc/?username=cdijkstra&style=plastic,color=yellowgreen" alt="GitHub Profile Views">
 		<br>
 		
-		<li>👨🏽‍💻 Always exploring new technologies (currently Blazor and Azure Machine Learniing).</li>
+		<li>👨🏽‍💻 Always exploring new technologies (currently Blazor and Azure Machine Learning).</li>
 		<li>🎯 My goal is to solve problems just once by creating generalized solutions</li>
 		<li>🔭 Passionate about Complex computations with edge cases</li>
 		<li>🌱 I’m looking to collaborate on innovative projects that connect people of make the world a better and more convenient place.</li>
