@@ -13,7 +13,13 @@
           "--open"  // Pass --open to the dev script
         ],
         "console": "integratedTerminal",
-        "skipFiles": ["<node_internals>/**"]
+        "skipFiles": ["<node_internals>/**"],
+        "sourceMaps": true,   // Enable source maps
+        "outFiles": [
+          "${workspaceFolder}/.svelte-kit/**",  // Location of compiled output files
+          "${workspaceFolder}/build/**",        // Include any other build directories
+          "${workspaceFolder}/dist/**"
+        ]
       }
     ]
   }

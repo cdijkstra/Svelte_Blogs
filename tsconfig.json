@@ -8,6 +8,8 @@
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
+		"module": "esnext",
+		"target": "es6",
 		"strict": true,
 		"moduleResolution": "node",
 		// "baseUrl": ".",
