@@ -6,7 +6,7 @@
 <header>
 	<div class="corner">
 		<a href="https://kit.svelte.dev">
-			<img src=src/lib/images/unix.png alt="Unix" />
+			<img src=/src/lib/images/unix.png alt="Unix" />
 		</a>
 	</div>
 

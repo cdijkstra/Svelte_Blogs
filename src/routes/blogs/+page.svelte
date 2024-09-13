@@ -9,6 +9,7 @@
     $: markdownContent = '';
   
     let posts: Post[] = [];
+    // Uncomment if something broke
     // let posts = [{
     //     title:  "Mastering JMESPath queries in the Azure CLI",
     //     date: "2021-05-22 15:45:00 +0100",
@@ -37,7 +38,7 @@
     }
 
     function readMore(slug: string) {
-        navigate(`/src/blogs/${slug}`);
+        navigate(`/blogs/${slug}`);
     }
 
   </script>
