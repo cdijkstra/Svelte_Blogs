@@ -6,7 +6,7 @@ import type { Post } from '$lib/types/types'
 import type { RequestHandler } from 'express';
 
 // Retrieves basic information about all blog posts that are located in src/posts
-export const GET: RequestHandler = async () => {
+export const getAllPosts: RequestHandler = async () => {
     try {
         const postsDirectory = join(process.cwd(), 'src/posts');
         const filenames = readdirSync(postsDirectory);
@@ -31,11 +31,6 @@ export const GET: RequestHandler = async () => {
 
     } catch (error) {
         console.error('Error fetching posts:', error);
-        return {
-            status: 500,
-            body: {
-                error: 'Internal Server Error'
-            }
-        };
+        return json({ error: 'Internal Server Error' }, { status: 500 });
     }
 };
