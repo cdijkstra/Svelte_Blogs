@@ -6,7 +6,7 @@ import type { Post } from '$lib/types/types'
 import type { RequestHandler } from 'express';
 
 // Retrieves basic information about all blog posts that are located in src/posts
-export const getAllPosts: RequestHandler = async () => {
+export const GET: RequestHandler = async () => {
     try {
         const postsDirectory = join(process.cwd(), 'src/posts');
         const filenames = readdirSync(postsDirectory);

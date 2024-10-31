@@ -12,15 +12,12 @@
 		"target": "es6",
 		"strict": true,
 		"moduleResolution": "node",
-		// "baseUrl": ".",
-		// "paths": {
-		// 	"svelte-routing/*": [
-		// 		"./node_modules/svelte-routing/*"
-		// 	],
-		// 	"$lib/*": [
-		// 		"src/lib/*"
-		// 	]
-		// }
+		"baseUrl": "./",
+		"paths": {
+		  "$app/*": ["src/$app/*"],
+		  "$lib/*": ["src/lib/*"]
+		}
 	},
-	"include": ["src/**/*", "node_modules/svelte-routing/**/*"]
+	"include": ["src/**/*", "node_modules/svelte-routing/**/*"],
+	"types": ["svelte", "jest", "msw"]
 }
