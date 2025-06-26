@@ -11,6 +11,15 @@ export default defineConfig({
   
 	// Optional: Enable source maps for the dev server as well
 	server: {
-	  sourcemap: true
-	}
+	  sourcemap: true,
+	  fs: {
+	    allow: ['.']
+	  }
+	},
+	
+	// Configure static asset serving
+	assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
+	
+	// Configure public directory behavior
+	publicDir: 'static'
   });

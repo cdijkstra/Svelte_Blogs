@@ -1,12 +1,11 @@
 <script>
 	import { page } from '$app/stores';
-	import github from '$lib/images/github.svg';
 </script>
 
 <header>
 	<div class="corner">
 		<a href="https://kit.svelte.dev">
-			<img src=/src/lib/images/unix.png alt="Unix" />
+			<img src="/unix.png" alt="Unix" />
 		</a>
 	</div>
 
@@ -32,7 +31,7 @@
 
 	<div class="corner">
 		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
+			<img src="/github.svg" alt="GitHub" />
 		</a>
 	</div>
 </header>

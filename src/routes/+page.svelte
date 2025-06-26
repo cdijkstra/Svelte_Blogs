@@ -6,7 +6,7 @@
 <section>
 	<div class="image-container">
 		<img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" alt="Welcome"/>
-		<img src="src/lib/images/casper2.png" alt="Casper" />
+		<img src="/casper2.png" alt="Casper" />
 	</div>
 	<h2>
 		I am Casper Dijkstra, a software developer and Azure architect working at Freshminds in the Netherlands.

@@ -14,9 +14,8 @@ export const GET: RequestHandler = async () => {
         const posts: Post[] = filenames.map((filename) => {
             const filePath = join(postsDirectory, filename);
             const fileContents = readFileSync(filePath, 'utf8');
-
             const { data, content } = matter(fileContents);
-            const post: Post = {
+            return {
                 title: data.title,
                 date: data.date,
                 tags: data.tags,
@@ -24,8 +23,6 @@ export const GET: RequestHandler = async () => {
                 summary: content.split('\n')[1], // Assuming the first line of content is the summary
                 slug: filename.replace('.md', '')
             };
-
-            return post;
         });
         return json(posts);
 
