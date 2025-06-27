@@ -30,7 +30,7 @@
   </nav>
 
   <div class="corner">
-    <a href="https://github.com/sveltejs/kit">
+    <a href="https://github.com/cdijkstra">
       <img src="/images/github.svg" alt="GitHub" />
     </a>
   </div>
