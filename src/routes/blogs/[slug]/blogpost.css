@@ -1,0 +1,60 @@
+@import '@fontsource-variable/fraunces';
+
+/* Markdown content styling for individual blog posts */
+.markdown-content h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 1.5rem 0 1rem 0;
+  color: #3a0eea;
+}
+
+.markdown-content h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1.25rem 0 0.75rem 0;
+  color: #444;
+}
+
+.markdown-content h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem 0;
+  color: #555;
+}
+
+.markdown-content p {
+  line-height: 1.6;
+  margin: 0.75rem 0;
+}
+
+.markdown-content ul, .markdown-content ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+
+.markdown-content li {
+  margin: 0.25rem 0;
+}
+
+.markdown-content code {
+  background-color: #f4f4f4;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+}
+
+.markdown-content pre {
+  background-color: #f8f8f8;
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid #ddd;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: #666;
+}

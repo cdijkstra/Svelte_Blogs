@@ -4,6 +4,7 @@
   import SvelteMarkdown from "svelte-markdown";
   import { marked } from "marked"; // For parsing markdown content
   import type { PageData } from "./$types";
+  import "./blogpost.css";
 
   export let data: PageData;
 
@@ -12,7 +13,7 @@
 
 <main>
   {#if data}
-    <article>
+    <article class="markdown-content">
       <h1>{data.title}</h1>
       <p>{data.date}</p>
       <SvelteMarkdown source={markdownContent}></SvelteMarkdown>
