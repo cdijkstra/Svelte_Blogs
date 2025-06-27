@@ -28,7 +28,7 @@
       🎯 My goal is to solve problems just once by creating generalized
       solutions
     </li>
-    <li>🔭 Passionate about Complex computations with edge cases</li>
+    <li>🔭 Passionate about complex computations with edge cases</li>
     <li>
       🌱 I’m looking to collaborate on innovative projects that connect people
       of make the world a better and more convenient place.
