@@ -1,60 +1,246 @@
-@import '@fontsource-variable/fraunces';
+/* Import Google Fonts for better typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Import Prism.js for syntax highlighting */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css');
 
 /* Markdown content styling for individual blog posts */
+.markdown-content {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  line-height: 1.7;
+  color: #2d3748;
+  background: rgb(239, 198, 144);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
 .markdown-content h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin: 1.5rem 0 1rem 0;
-  color: #3a0eea;
+  font-size: 2.75rem;
+  font-weight: 700;
+  margin: 2rem 0 1.5rem 0;
+  color: #0574a7;
+  letter-spacing: -0.025em;
 }
 
 .markdown-content h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 1.25rem 0 0.75rem 0;
-  color: #444;
+  font-size: 2.25rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem 0;
+  color: #2d3748;
+  letter-spacing: -0.015em;
 }
 
 .markdown-content h3 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 1rem 0 0.5rem 0;
-  color: #555;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem 0;
+  color: #2d3748;
+}
+
+.markdown-content h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.5rem 0;
+  color: #4a5568;
 }
 
 .markdown-content p {
-  line-height: 1.6;
-  margin: 0.75rem 0;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  margin: 1.25rem 0;
+  color: #2d3748;
 }
 
 .markdown-content ul, .markdown-content ol {
-  margin: 0.75rem 0;
-  padding-left: 1.5rem;
+  font-size: 1.125rem;
+  margin: 1.25rem 0;
+  padding-left: 2rem;
 }
 
 .markdown-content li {
-  margin: 0.25rem 0;
+  margin: 0.5rem 0;
+  line-height: 1.7;
 }
 
 .markdown-content code {
-  background-color: #f4f4f4;
-  padding: 0.2rem 0.4rem;
-  border-radius: 3px;
-  font-family: 'Courier New', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  /* background-color: #14326f; */
+  color: #e53e3e;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  border: 1px solid #e2e8f0;
 }
 
 .markdown-content pre {
-  background-color: #f8f8f8;
-  padding: 1rem;
-  border-radius: 5px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  background-color: #1a202c;
+  color: #e2e8f0;
+  padding: 1.5rem;
+  border-radius: 8px;
   overflow-x: auto;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.markdown-content pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border: none;
+  font-size: inherit;
 }
 
 .markdown-content blockquote {
-  border-left: 4px solid #ddd;
-  padding-left: 1rem;
-  margin: 1rem 0;
+  border-left: 4px solid #4299e1;
+  background-color: #f7fafc;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
   font-style: italic;
-  color: #666;
+  color: #4a5568;
+  border-radius: 0 4px 4px 0;
+}
+
+.markdown-content a {
+  color: #3182ce;
+  text-decoration: underline;
+  text-decoration-color: #bee3f8;
+  text-underline-offset: 2px;
+  transition: all 0.2s ease;
+}
+
+.markdown-content a:hover {
+  color: #2c5282;
+  text-decoration-color: #3182ce;
+}
+
+.markdown-content strong {
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.markdown-content em {
+  font-style: italic;
+  color: #4a5568;
+}
+
+/* Blog post meta information */
+.blog-meta {
+  font-size: 0.95rem;
+  color: #718096;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.blog-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #1a202c;
+  letter-spacing: -0.025em;
+}
+
+/* Custom syntax highlighting for YAML and other languages */
+.markdown-content pre[class*="language-"] {
+  background: #2d3748;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.markdown-content code[class*="language-"] {
+  color: #e2e8f0;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* YAML-specific highlighting */
+.token.key {
+  color: #81e6d9 !important; /* Teal for keys */
+}
+
+.token.string {
+  color: #fbb6ce !important; /* Pink for strings */
+}
+
+.token.number {
+  color: #fbd38d !important; /* Orange for numbers */
+}
+
+.token.boolean {
+  color: #90cdf4 !important; /* Light blue for booleans */
+}
+
+.token.null {
+  color: #fc8181 !important; /* Red for null */
+}
+
+.token.comment {
+  color: #a0aec0 !important; /* Gray for comments */
+  font-style: italic;
+}
+
+.token.punctuation {
+  color: #e2e8f0 !important; /* Light gray for punctuation */
+}
+
+.token.operator {
+  color: #f687b3 !important; /* Pink for operators */
+}
+
+.token.keyword {
+  color: #90cdf4 !important; /* Light blue for keywords */
+}
+
+/* JSON highlighting */
+.token.property {
+  color: #81e6d9 !important; /* Teal for properties */
+}
+
+/* Shell/Bash highlighting */
+.token.command {
+  color: #90cdf4 !important;
+}
+
+.token.parameter {
+  color: #fbb6ce !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .markdown-content {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .blog-title {
+    font-size: 2.25rem;
+  }
+  
+  .markdown-content h1 {
+    font-size: 2rem;
+  }
+  
+  .markdown-content h2 {
+    font-size: 1.75rem;
+  }
+  
+  .markdown-content p {
+    font-size: 1rem;
+  }
+  
+  .markdown-content pre[class*="language-"] {
+    font-size: 0.8rem;
+    padding: 1rem;
+  }
 }

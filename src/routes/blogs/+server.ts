@@ -15,13 +15,37 @@ export const GET: RequestHandler = async () => {
             const filePath = join(postsDirectory, filename);
             const fileContents = readFileSync(filePath, 'utf8');
             const { data, content } = matter(fileContents);
-            // Use gray-matter to filter metadata and content
+            
+            // Extract summary: find first paragraph after any ## header
+            const extractSummary = (content: string): string => {
+                const lines = content.split('\n');
+                let foundHeader = false;
+                
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    
+                    // Check if this line is a ## header
+                    if (line.startsWith('##')) {
+                        foundHeader = true;
+                        continue;
+                    }
+                    
+                    // If we found a header and this line has content (not empty)
+                    if (foundHeader && line.length > 0) {
+                        return line;
+                    }
+                }
+                
+                // Fallback: return first non-empty line if no ## header found
+                return lines.find(line => line.trim().length > 0) || 'No summary available';
+            };
+            
             return {
                 title: data.title,
                 date: data.date,
                 tags: data.tags,
                 image: data.image,
-                summary: content.split('\n')[2], // Assuming the first line of content is the summary
+                summary: extractSummary(content),
                 slug: filename.replace('.md', '') // Slug value is used in /blogs/[slug]
             };
         });
