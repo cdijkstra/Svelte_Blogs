@@ -10,7 +10,7 @@ image: pipelines.png
 
 ## The benefit of loops in Azure Pipelines
 
-A common situation I run into when creating pipelines is that _similar steps should take place for different environments_. In software development we are all great fans of the DRY principle. What we sometimes forget is that it can be applied to IaC and pipeline configuration too. In Azure pipelines we can easily prevent repeating ourselves by looping over `object` parameters!
+A common scenario I encounter when building pipelines is the need to perform similar steps across multiple environments. As software developers, we value the DRY (Don't Repeat Yourself) principle—but we often overlook its relevance in Infrastructure as Code (IaC) and pipeline configuration. Fortunately, Azure Pipelines makes it easy to avoid duplication by using `object` parameters and looping over them.
 
 We can loop over numbers, or usernames quite easily in Azure pipelines.
 
