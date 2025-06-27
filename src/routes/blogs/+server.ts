@@ -8,7 +8,7 @@ import type { RequestHandler } from 'express';
 // Retrieves basic information about all blog posts that are located in src/posts
 export const GET: RequestHandler = async () => {
     try {
-        const postsDirectory = join(process.cwd(), 'src/posts');
+        const postsDirectory = join(process.cwd(), 'static/posts');
         const filenames = readdirSync(postsDirectory);
 
         const posts: Post[] = filenames.map((filename) => {

@@ -10,7 +10,7 @@ export const GET: RequestHandler = async ({ params }) => {
 
   try {
     // Find the corresponding markdown file based on the slug
-    const postPath = join(process.cwd(), 'src/posts', `${slug}.md`);
+    const postPath = join(process.cwd(), 'static/posts', `${slug}.md`);
     const fileContents = readFileSync(postPath, 'utf8');
 
     // Parse front matter and markdown content

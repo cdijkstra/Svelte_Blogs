@@ -5,7 +5,7 @@
 <header>
   <div class="corner">
     <a href="https://kit.svelte.dev">
-      <img src="images/unix.png" alt="Unix" />
+      <img src="/images/unix.png" alt="Unix" />
     </a>
   </div>
 
@@ -31,7 +31,7 @@
 
   <div class="corner">
     <a href="https://github.com/sveltejs/kit">
-      <img src="/github.svg" alt="GitHub" />
+      <img src="/images/github.svg" alt="GitHub" />
     </a>
   </div>
 </header>
