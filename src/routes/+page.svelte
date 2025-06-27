@@ -9,7 +9,7 @@
       src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif"
       alt="Welcome"
     />
-    <img src="/casper2.png" alt="Casper" />
+    <img src="images/casper2.png" alt="Casper" />
   </div>
   <h2>
     I am Casper Dijkstra, a software developer and Azure architect working in

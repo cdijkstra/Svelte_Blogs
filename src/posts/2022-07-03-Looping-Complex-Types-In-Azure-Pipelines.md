@@ -46,7 +46,7 @@ When using ARM or bicep templates, it is a good practice to validate if the temp
 
 What we like to create is a validation stage where a template is called which can be used for different resource groups. We have to pass the name of the RG to the template as a parameters, so we get:
 
-```yml
+```yaml
 stages:
   - stage: ValidateInfra
     displayName: "Validate infra"
@@ -61,7 +61,7 @@ stages:
 
 The template itself contains the validation steps for the TAP phases, containing the `AzureResourceGroupDeployment@2` step with `deploymentMode: 'Validation'`. It initally looks like:
 
-```yml
+```yaml
 parameters:
   - name: deployment
     type: string

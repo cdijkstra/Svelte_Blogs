@@ -41,7 +41,7 @@
 
 <main>
   <h1>Congratulations 🎉 You've found my blogs</h1>
-  <p class="blogcount" data-count="{posts.length}">Posts available</p>
+  <p class="blogcount" data-count={posts.length}>Posts available</p>
 
   <!-- <div class="markdown-content">{@html markdownContent}</div> -->
 
@@ -50,7 +50,7 @@
       {#each posts as post}
         <article>
           <h2 class="fancy-title">{post.title}</h2>
-          <img src="/{post.image}" alt={post.title} />
+          <img src="/images/{post.image}" alt={post.title} />
           <p class="summary">{post.summary}</p>
           <button on:click={() => readMore(post.slug)}>Read more</button>
         </article>
