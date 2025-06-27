@@ -4,7 +4,8 @@ export const load: PageLoad = async ({ params, fetch }) => {
     const { slug } = params;
 
     try {
-        const response = await fetch(`/blogs/${slug}`);
+        const response = await fetch(`/blogs/${slug}`); 
+        // Called API from +server.ts (RequestHandler)
         if (response.ok) {
             const post = await response.json();
             return post;

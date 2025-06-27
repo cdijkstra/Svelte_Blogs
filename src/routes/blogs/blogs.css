@@ -6,9 +6,15 @@ article img {
     display: block;
 }
 
-article img:hover { 
-    transform: scale(1.05) rotate(3deg) translate(20px, 0px);
-  }
+/* Odd articles (1st, 3rd, 5th, etc.) - rotate left */
+article:nth-child(odd) img:hover {
+    transform: scale(1.03) rotate(+2deg) translate(20px, 0px);
+}
+
+/* Even articles (2nd, 4th, 6th, etc.) - rotate right */
+article:nth-child(even) img:hover {
+    transform: scale(1.03) rotate(-2deg) translate(20px, 0px);
+}
 
 .post-flexbox {
     display: grid;
@@ -20,7 +26,7 @@ article {
     box-sizing: border-box;
     padding: 15px;
     border: 1px solid #ddd;
-    border-radius: 2px;
+    border-radius: 10%;
     background: aqua
 }
 

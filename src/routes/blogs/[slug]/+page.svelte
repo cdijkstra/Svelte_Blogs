@@ -21,10 +21,3 @@
     <p>Loading...</p>
   {/if}
 </main>
-
-<style>
-  .markdown-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-</style>

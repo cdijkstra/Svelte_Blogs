@@ -2,11 +2,7 @@
   import "./blogs.css";
 
   import { onMount } from "svelte";
-  import { marked } from "marked";
-  import { navigate } from "svelte-routing";
   import type { Post } from "$lib/types/types";
-
-  $: markdownContent = "";
 
   let posts: Post[] = [];
   // Uncomment if something broke
@@ -20,13 +16,14 @@
   // }];
 
   onMount(async () => {
-    console.log("Calling API");
+    console.log("Calling blog retrieval API");
     fetchPosts();
   });
 
   async function fetchPosts() {
     try {
       const response = await fetch("blogs");
+      // Called API from server (RequestHandler)
       if (response.ok) {
         posts = await response.json();
       } else {
@@ -38,8 +35,7 @@
   }
 
   function readMore(slug: string) {
-    location.href = `/blogs/${slug}`;
-    // navigate(`/blogs/${slug}`);
+    location.href = `/blogs/${slug}`; // Navigate to blogs/[slug]
   }
 </script>
 
