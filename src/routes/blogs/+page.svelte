@@ -4,6 +4,8 @@
   import { onMount } from "svelte";
   import type { Post } from "$lib/types/types";
 
+  import PixelArt from "../PixelArt.svelte";
+
   let posts: Post[] = [];
   // Uncomment if something broke
   // let posts = [{
@@ -40,13 +42,14 @@
 </script>
 
 <main>
-  <h1>Congratulations 🎉 You've found my blogs</h1>
-  <p class="blogcount" data-count={posts.length}>Posts available</p>
+  <div class="title-flexbox">
+    <h1>Congratulations 🎉 You've found my blogs</h1>
+    <PixelArt />
+  </div>
 
-  <!-- <div class="markdown-content">{@html markdownContent}</div> -->
-
-  {#if posts.length > 0}
-    <div class="post-flexbox">
+  <div class="post-flexbox">
+    <p class="blogcount" data-count={posts.length}>Posts available</p>
+    {#if posts.length > 0}
       {#each posts as post}
         <article>
           <h2 class="fancy-title">{post.title}</h2>
@@ -55,8 +58,8 @@
           <button on:click={() => readMore(post.slug)}>Read more</button>
         </article>
       {/each}
-    </div>
-  {:else}
-    <p>Loading...</p>
-  {/if}
+    {:else}
+      <p>Loading...</p>
+    {/if}
+  </div>
 </main>
