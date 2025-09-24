@@ -45,10 +45,10 @@
   <div class="title-flexbox">
     <h1>Congratulations 🎉 You've found my blogs</h1>
     <PixelArt />
+    <p class="blogcount" data-count={posts.length}>Posts available</p>
   </div>
 
   <div class="post-flexbox">
-    <p class="blogcount" data-count={posts.length}>Posts available</p>
     {#if posts.length > 0}
       {#each posts as post}
         <article>
