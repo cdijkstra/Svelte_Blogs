@@ -143,12 +143,17 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     flex: 0.6;
   }
 
-  .image-container img {
+  .image-container img:nth-of-type(1) {
     width: 80px; /* Adjust the width as needed */
     height: 80px; /* Adjust the height as needed */
+  }
+
+  .image-container img:nth-of-type(2) {
+    width: 160px; /* Adjust the width as needed */
+    height: 160px; /* Adjust the height as needed */
   }
 </style>
