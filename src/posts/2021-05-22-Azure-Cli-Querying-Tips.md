@@ -15,7 +15,7 @@ Both the Azure CLI and pwsh commandlet interacts with the Azure REST API and all
 For instance, we can find out which Azure Kubernetes upgrades are available through `az aks get-upgrades --resource-group <rg-name> --name <aks-name>`
 but it may not be easy to filter the _relevant information_ out of the returned info. I will show you how to do that in this blog.
 
-Aforementioned command returnssomething like:
+Aforementioned command returns something like:
 
 ```
 {

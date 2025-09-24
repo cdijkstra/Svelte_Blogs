@@ -11,6 +11,7 @@
     />
     <img src="images/casper2.png" alt="Casper" />
   </div>
+  <h1>Dijkstra’s Dev Diary</h1>
   <h2>
     I am Casper Dijkstra, a software developer and Azure architect working in
     the Netherlands.
