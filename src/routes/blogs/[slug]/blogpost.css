@@ -4,18 +4,10 @@
 /* Import Prism.js for syntax highlighting */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css');
 
-/* Ensure main container can expand to full width */
-main {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Markdown content styling for individual blog posts */
+/* Ensure main container can expand to full width - only for pages with markdown-content */
 .markdown-content {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  width: 80vw !important; /* Use viewport width instead of percentage */
+  width: 70vw !important; /* Use viewport width instead of percentage */
   max-width: 1200px; /* Prevent it from getting too wide on very large screens */
   margin: 2rem auto !important;
   padding: 2rem;
@@ -24,6 +16,17 @@ main {
   background: rgb(239, 198, 144);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Override parent container constraints only when markdown-content is present */
+.markdown-content:before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 0;
+  z-index: -1;
 }
 
 .markdown-content h1 {
@@ -228,7 +231,7 @@ main {
 /* Responsive design */
 @media (min-width: 769px) {
   .markdown-content {
-    width: 80% !important;
+    width: 70vw !important;
     max-width: 1200px;
   }
 }
