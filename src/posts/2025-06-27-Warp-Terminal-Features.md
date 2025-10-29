@@ -24,7 +24,8 @@ In an era of modern tools and flashy UIs, the terminal is quietly irreplaceableâ
 
 - Workflows: Warp supports sharable command templates and workflows, great for onboarding or repetitive tasks. It acts like Visual Studio Code where `Ctrl + Shift + P` opens a Command Palette. It looks like this in Warp
   ![Commands](/images/warp-commands.png).
-  Under workflows, you can save commands that you frequently use - or the infrequent ones that are still tedious to remember!
+
+  Under workflows, you can save commands that you frequently use - or the infrequent ones - that are still tedious to remember!
   ![Workflows](/images/workflows.png)
 
 - Agentic Development Environment: Warp AI can help suggest commands or even fix common errors. Upon switching to the ADE, you can select the desired LLM to complete your automation tasks.

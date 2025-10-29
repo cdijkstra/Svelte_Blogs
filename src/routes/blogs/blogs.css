@@ -23,17 +23,83 @@ article:nth-child(even) img:hover {
 
 article h2.fancy-title {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: white; /* Changed to white for better contrast */
-  background-color: deepskyblue; /* Blue background */
-  line-height: 1.3;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  background: none;
+  line-height: 1.2;
   margin-bottom: 1rem;
   margin-top: 0;
-  padding: 0.75rem 1rem; /* Added padding for better appearance */
-  border-radius: 8px; /* Added border radius to match design */
+  padding: 0;
+  border-radius: 0;
+  position: relative;
 }
 
+article h2.fancy-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+article:hover h2.fancy-title::after {
+  width: 80px;
+}
+
+article button {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: transparent;
+  color: darkgreen;
+  border: 1px solid #e2e8f0;
+  padding: 0.625rem 1.25rem;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+article button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #3b82f6;
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+article button:hover {
+  color: white;
+  border-color: forestgreen;
+  transform: translateY(-1px);
+}
+
+article button:hover::before {
+  left: 0;
+}
+
+article button:active {
+  transform: translateY(0);
+}
+
+article button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
 
 .title-flexbox {
   display: flex;
