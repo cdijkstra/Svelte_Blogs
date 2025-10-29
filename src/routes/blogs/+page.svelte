@@ -28,6 +28,7 @@
       // Called API from server (RequestHandler)
       if (response.ok) {
         posts = await response.json();
+        posts = posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       } else {
         console.error("Failed to fetch posts:", response.statusText);
       }
