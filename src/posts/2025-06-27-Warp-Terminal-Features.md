@@ -5,7 +5,7 @@ date: "2025-06-27 20:45:00 +0100"
 tags:
   - Efficiency
   - Terminal
-image: pipelines.png
+image: warp-flags.png
 ---
 
 ## Redesigned terminal
