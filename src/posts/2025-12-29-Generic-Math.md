@@ -98,7 +98,7 @@ public static T Add<T>(T x, T y) where T : IAdditionOperators<T, T, T>
 This constraint states precisely what the method requires:
 
 * The + operator
-* Two operands of type T (`TLeft` and `TRight`)
+* Two operands of type T (`TSelf` and `TOther`)
 * A result of type T (`TResult`)
 
 This would be the most minimal and expressive constraint for an addition-only algorithm. In a more realistic scenario, we want more numb
@@ -156,7 +156,8 @@ public interface INumber<TSelf>
           IModulusOperators<TSelf, TSelf, TSelf>,
           INumberBase<TSelf>
         where TSelf : INumber<TSelf>?
- 
+```
+```csharp
 public interface INumberBase<TSelf>
         : IAdditionOperators<TSelf, TSelf, TSelf>,
           IAdditiveIdentity<TSelf, TSelf>,
