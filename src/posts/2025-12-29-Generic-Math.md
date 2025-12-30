@@ -16,7 +16,7 @@ This feature allows developers to write more flexible and reusable code by enabl
 I will introduce the concept by first demoing what kind of repeated code you could get *before* Generic Math was introduced.
 
 ```csharp
-public static double Add(double x, double y) // Overload
+public static double Add(double x, double y)
 {
     return x + y;
 }
@@ -24,7 +24,12 @@ public static double Add(double x, double y) // Overload
 
 And if we want to calculate the average of a list of integers, we would need to write a different method for each type.
 ```csharp
-public static int Add(int x, int y)
+public static int Add(int x, int y) // int overload
+{
+    return x + y;
+}
+
+public static int Add(float x, float y) // float overload
 {
     return x + y;
 }
@@ -44,9 +49,9 @@ public static class AdditionsGenericOldSchool
     }
 }
 ```
-This would indeed work
+with a cast to type `T` and using `dynamic` to perform the addition at runtime.
+This would indeed work:
 ```
-// Part 2 Generic Math Workaround, before C# 11
 var resultInt = AdditionsGenericOldSchool.Add(1, 2); // 3
 var resultDouble = AdditionsGenericOldSchool.Add(1.0, 2.0); // 3.0
 ```
@@ -59,7 +64,7 @@ var battleTestAddition = AdditionsGenericOldSchool.Add(
     );
 Console.WriteLine($"List addition: {battleTestAddition}"); // No operator+ defined for List<T>, but allowed by method
 ```
-And the method would even allow us to add nonsensical things like strings or Person objects...
+Even worse, the Add method allow us to add nonsensical things like strings or Person objects...
 ```csharp
 AdditionsGenericOldSchool.Add(
 new Person()
@@ -71,7 +76,8 @@ new Person()
     Name = "Bob", Age = 29
 });
 ```
-Generic Math solves this problem by introducing interfaces that define mathematical operations for types.
+so typically you'd want to stay in control and write overloaded functions for the types you want to support. 
+Generic Math made life easier introducing interfaces that define mathematical operations for types.
 
 
 ## Mathematical interfaces
@@ -92,14 +98,14 @@ public static T Add<T>(T x, T y) where T : IAdditionOperators<T, T, T>
 This constraint states precisely what the method requires:
 
 * The + operator
-* Two operands of type T
-* A result of type T
+* Two operands of type T (`TLeft` and `TRight`)
+* A result of type T (`TResult`)
 
-This is the most minimal and expressive constraint for an addition-only algorithm.
+This would be the most minimal and expressive constraint for an addition-only algorithm. In a more realistic scenario, we want more numb
 
 ### Broad numeric interfaces
 ```csharp
-public static T Add2<T>(T x, T y) where T : INumberBase<T>
+public static T AddNew<T>(T x, T y) where T : INumberBase<T>
 {
     return x + y;
 }
@@ -140,3 +146,34 @@ public interface IAdditiveIdentity<TSelf, TResult>
 ```
 
 Any implementing type is now required to supply that static member, enforced at compile time.
+
+Diving into `INumber` and `INumberBase`, we can see that they both declare static members that must be implemented by the type itself.
+```csharp
+public interface INumber<TSelf>
+        : IComparable,
+          IComparable<TSelf>,
+          IComparisonOperators<TSelf, TSelf, bool>,
+          IModulusOperators<TSelf, TSelf, TSelf>,
+          INumberBase<TSelf>
+        where TSelf : INumber<TSelf>?
+ 
+public interface INumberBase<TSelf>
+        : IAdditionOperators<TSelf, TSelf, TSelf>,
+          IAdditiveIdentity<TSelf, TSelf>,
+          IDecrementOperators<TSelf>,
+          IDivisionOperators<TSelf, TSelf, TSelf>,
+          IEquatable<TSelf>,
+          IEqualityOperators<TSelf, TSelf, bool>,
+          IIncrementOperators<TSelf>,
+          IMultiplicativeIdentity<TSelf, TSelf>,
+          IMultiplyOperators<TSelf, TSelf, TSelf>,
+          ISpanFormattable,
+          ISpanParsable<TSelf>,
+          ISubtractionOperators<TSelf, TSelf, TSelf>,
+          IUnaryPlusOperators<TSelf, TSelf>,
+          IUnaryNegationOperators<TSelf, TSelf>
+        where TSelf : INumberBase<TSelf>?
+```
+
+## Conclusion
+Generic Math is a great addition to the .NET ecosystem, and it will make it easier to write more flexible and reusable code.
