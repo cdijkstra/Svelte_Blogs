@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Generic Math in .NET"
+title: "Generic Math in .NET (NL)"
 date: "2025-06-27 20:45:00 +0100"
 tags:
   - .NET
