@@ -9,35 +9,18 @@ image: generic-math.png
 ---
 
 ## The need for a .NET Generic Math Library
-Microsoft has been continuously enhancing the .NET ecosystem, and a great addition in recent years was the introduction of Generic Math in .NET 7. 
+Microsoft has been continuously enhancing the .NET ecosystem, and a great addition in recent years was the introduction of Generic Math since C# 11.
 
 This feature allows developers to write more flexible and reusable code by enabling mathematical operations on generic types.
 
-I will introduce the concept by first demoing what kind of repeated code you could get *before* Generic Math was introduced.
+Let me introduce the kinds of issues we ran into before Generic Math. To allow the addition of allowed type, you would write type-specific methods:
 
 ```csharp
-public static double Add(double x, double y)
-{
-    return x + y;
-}
+public static double Add(double x, double y) => x + y;
+public static int Add(int x, int y) => x + y;
+public static float Add(float x, float y) => x + y;
 ```
-
-And if we want to calculate the average of a list of integers, we would need to write a different method for each type.
-```csharp
-public static int Add(int x, int y) // int overload
-{
-    return x + y;
-}
-
-public static int Add(float x, float y) // float overload
-{
-    return x + y;
-}
-```
-
-With similar kinds of overloads for other mathematical operations. This can quickly become unwieldy. 
-
-But wait Casper, can't we use generics for this?
+which introduces a lot of similar methods. We could attempt to solve that by defining a generic method using `dynamic`:
 ```csharp
 public static class AdditionsGenericOldSchool
 {
@@ -49,95 +32,60 @@ public static class AdditionsGenericOldSchool
     }
 }
 ```
-with a cast to type `T` and using `dynamic` to perform the addition at runtime.
-This would indeed work:
-```
-var resultInt = AdditionsGenericOldSchool.Add(1, 2); // 3
-var resultDouble = AdditionsGenericOldSchool.Add(1.0, 2.0); // 3.0
-```
-however, the method would not be restricted to numbers.
+While this works, it lacks compile-time safety:
 ```csharp
-// Caveat
-var battleTestAddition = AdditionsGenericOldSchool.Add(
-    new List<int>() { 1, 2 }, 
-    new List<int>() { 3, 4 }
-    );
-Console.WriteLine($"List addition: {battleTestAddition}"); // No operator+ defined for List<T>, but allowed by method
+// This compiles, but is nonsensical
+var wrong = AdditionsGenericOldSchool.Add(
+    new List<int> {1, 2}, 
+    new List<int> {3, 4}
+);
 ```
-Even worse, the Add method allow us to add nonsensical things like strings or Person objects...
-```csharp
+You could also accidentally add objects you didn’t intend:
+```
 AdditionsGenericOldSchool.Add(
-new Person()
-{
-    Name = "Amy", Age = 20
-}, 
-new Person()
-{
-    Name = "Bob", Age = 29
-});
+    new Person { Name = "Amy", Age = 20 },
+    new Person { Name = "Bob", Age = 29 }
+);
 ```
-so typically you'd want to stay in control and write overloaded functions for the types you want to support. 
-Generic Math made life easier introducing interfaces that define mathematical operations for types.
-
 
 ## Mathematical interfaces
-With Generic Math, we can write a single method that can be used for any type that implements the `IAdditiveIdentity<T>` interface.
+Generic Math breaks numeric capabilities into **small, focused interfaces**. This lets you constrain generic methods exactly to the operations they require.
 
-One of the biggest differences between Generic Math and previous approaches is that numeric behavior is decomposed into small, focused interfaces. Instead of a single “number” constraint, you can opt into exactly the capabilities your algorithm needs.
-
-For example, if all you need is addition, you don’t need to depend on the full numeric surface area.
-
-### Operator-specific interfaces
+For example, if all you need is addition:
 ```csharp
 public static T Add<T>(T x, T y) where T : IAdditionOperators<T, T, T>
 {
     return x + y;
 }
 ```
-
 This constraint states precisely what the method requires:
-
 * The + operator
 * Two operands of type T (`TSelf` and `TOther`)
 * A result of type T (`TResult`)
 
-This would be the most minimal and expressive constraint for an addition-only algorithm. In a more realistic scenario, we want more numb
-
-### Broad numeric interfaces
+For more general numeric methods, you can use broader interfaces:
 ```csharp
 public static T AddNew<T>(T x, T y) where T : INumberBase<T>
 {
     return x + y;
 }
 ```
+`INumberBase<T>` is a foundational interface implemented by all numeric types, and includes:
 
-`INumberBase<T>` is a foundational interface implemented by all numeric types. It includes:
+* Additive and multiplicative identities (`Zero`, `One`)
+* Comparison support
+* Sign information
+* Basic numeric guarantees
 
-* additive and multiplicative identities (Zero, One)
-* comparison support
-* sign information
-* basic numeric guarantees
-
-Using it communicates that the method is intended for general numeric types, even if the implementation only uses `operator+`.
-
-Before Generic Math, generic code had to choose between:
-* code duplication
-* `dynamic`
-* runtime conversions
-
-Now, constraints are part of the type system, enabling compile-time checking.
+Now your generic code is compile-time safe, reusable, and expressive.
 
 ## Static virtual interface members
-Generic Math is built on a feature that did not exist in C# before: static virtual members in interfaces.
+Generic Math is built on a feature that did not exist in C# before: **static virtual members in interface**.
+One key feature enabling Generic Math is **static virtual members** in interfaces.
 
-Before, interfaces could only describe instance behavior. Static members belonged to the type itself and were not polymorphic. This made it impossible for generic code to express requirements like “this type must provide a + operator” or “this type must expose a numeric zero”.
+Previously, interfaces could only describe instance behavior. Static members were not polymorphic, so it was impossible to require that a type provide a + operator or expose a numeric zero.
 
-C# 11 changes this by allowing interfaces to declare static abstract members (often described as **static virtual interface members**).
-
-Before C# 11, interfaces could only describe instance behavior. Static members—such as operators or numeric constants—could not be required by an interface. This made it impossible for generic code to express constraints like “this type must support +” or “this type must provide a zero value”.
-
-C# 11 removes this limitation by allowing interfaces to declare static abstract members, which must be implemented by the type itself.
-
+C# 11 allows static abstract members in interfaces, enforced at compile time:
 ```csharp
 public interface IAdditiveIdentity<TSelf, TResult>
 {
@@ -145,7 +93,7 @@ public interface IAdditiveIdentity<TSelf, TResult>
 }
 ```
 
-Any implementing type is now required to supply that static member, enforced at compile time.
+Whenever you inherit from the interface, you have to define that static member, and this is enforced at compile time.
 
 Diving into `INumber` and `INumberBase`, we can see that they both declare static members that must be implemented by the type itself.
 ```csharp
@@ -176,5 +124,90 @@ public interface INumberBase<TSelf>
         where TSelf : INumberBase<TSelf>?
 ```
 
+## Using Generic Math in Practice
+With static virtual interface members, you can now write generic code that works seamlessly across all numeric types. For example, you can create a method that adds two values of any numeric type:
+```csharp
+public static T Add<T>(T left, T right) where T : INumber<T>
+{
+    return left + right;
+}
+// Usage:
+int sumInt = Add(5, 10);
+double sumDouble = Add(3.5, 2.5);
+```
+We can now also leverage Generic Math capabilities to write a function that calculates the average
+```csharp
+public static T Average<T>(T[] numbers) where T : INumber<T>
+{
+    if (numbers.Length == 0) return T.Zero;
+    T sum = T.Zero;
+    foreach (var n in numbers)
+    {
+        sum += n;
+    }
+    return sum / T.CreateChecked(numbers.Length);
+}
+// Usage:
+double avg = Average(new double[] { 1.0, 2.0, 3.0 }); // 2.0
+int avgInt = Average(new int[] { 1, 2, 3 });          // 2
+```
+You can define your own numeric types and plug them into generic methods. Example: a simple `Fraction` type.
+```
+public readonly struct Fraction : INumber<Fraction>
+{
+    public long Numerator { get; }
+    public long Denominator { get; }
+
+    public Fraction(long numerator, long denominator)
+    {
+        if (denominator == 0) throw new DivideByZeroException();
+        Numerator = numerator;
+        Denominator = denominator;
+    }
+
+    // Zero and One
+    public static Fraction Zero => new Fraction(0, 1);
+    public static Fraction One => new Fraction(1, 1);
+
+    // Operators
+    public static Fraction operator +(Fraction a, Fraction b)
+        => new Fraction(a.Numerator * b.Denominator + b.Numerator * a.Denominator,
+                        a.Denominator * b.Denominator);
+
+    public static Fraction operator /(Fraction a, Fraction b)
+        => new Fraction(a.Numerator * b.Denominator, a.Denominator * b.Numerator);
+
+    public static Fraction AdditiveIdentity => Zero;
+    public static Fraction MultiplicativeIdentity => One;
+
+    // Minimal required members for demonstration
+    public int CompareTo(Fraction other) => (Numerator * other.Denominator).CompareTo(other.Numerator * Denominator);
+    public bool Equals(Fraction other) => Numerator * other.Denominator == other.Numerator * Denominator;
+    public override string ToString() => $"{Numerator}/{Denominator}";
+}
+```
+This can now be used as
+```
+var fractions = new Fraction[]
+{
+    new Fraction(1, 2),
+    new Fraction(3, 4),
+    new Fraction(5, 6)
+};
+
+Fraction avgFraction = Average(fractions);
+Console.WriteLine(avgFraction); // e.g., 25/24
+```
+
 ## Conclusion
-Generic Math is a great addition to the .NET ecosystem, and it will make it easier to write more flexible and reusable code.
+Before Generic Math, generic code had to choose between:
+* code duplication
+* `dynamic`
+* runtime conversions
+
+Generic Math is a **game changer for .NET**. It allows:
+* Reusable numeric algorithms
+* Compile-time safety
+* Support for custom numeric types
+
+Now, constraints are part of the type system, enabling compile-time checking!
