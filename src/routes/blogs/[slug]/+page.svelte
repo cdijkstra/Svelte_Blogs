@@ -2,14 +2,11 @@
 
 <script lang="ts">
   import SvelteMarkdown from "svelte-markdown";
-  import { marked } from "marked"; // For parsing markdown content
   import type { PageData } from "./$types";
   import "./blogpost.css";
   import { onMount } from "svelte";
 
   export let data: PageData;
-
-  $: markdownContent = marked(data.content);
 
   onMount(async () => {
     // Dynamically import Prism.js for syntax highlighting
@@ -40,7 +37,7 @@
   {#if data}
     <article class="markdown-content">
       <h1>{data.title}</h1>
-      <SvelteMarkdown source={markdownContent}></SvelteMarkdown>
+      <SvelteMarkdown source={data.content}></SvelteMarkdown>
       <p>Date: {data.date}</p>
     </article>
   {:else}
