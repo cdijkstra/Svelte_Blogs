@@ -34,16 +34,16 @@ public static class AdditionsGenericOldSchool
     }
 }
 ```
-Hoewel dit werkt, mist het compile-time veiligheid:
+Hoewel dit werkt, mist het _compile-time_ veiligheid:
 ```csharp
-// This compiles, but is nonsensical
+// Dit compileert, maar kan niet gebruikt worden
 var wrong = AdditionsGenericOldSchool.Add(
     new List<int> {1, 2}, 
     new List<int> {3, 4}
 );
 ```
 Je kunt ook per ongeluk objecten optellen die daar niet voor bedoeld zijn:
-```
+```csharp
 AdditionsGenericOldSchool.Add(
     new Person { Name = "Amy", Age = 20 },
     new Person { Name = "Bob", Age = 29 }
@@ -193,7 +193,7 @@ public readonly struct Fraction : INumber<Fraction>
 }
 ```
 Gebruik:
-```sharp
+```csharp
 var fractions = new Fraction[]
 {
     new Fraction(1, 2),
